@@ -1,0 +1,102 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 15.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinEvolve-Android", "XamarinEvolve-Android\XamarinEvolve-Android.csproj", "{A12987FB-B625-4502-9D11-89F5A29F7E51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinEvolve-Core", "XamarinEvolve-Core\XamarinEvolve-Core.csproj", "{B5EB1AF2-8FC7-4338-B652-323CB083B09F}"
+EndProject
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "XamarinEvolve-iOS", "XamarinEvolve-iOS\XamarinEvolve-iOS.csproj", "{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.Release|iPhone.Build.0 = Release|Any CPU
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{A12987FB-B625-4502-9D11-89F5A29F7E51}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.Release|iPhone.Build.0 = Release|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{B5EB1AF2-8FC7-4338-B652-323CB083B09F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.Debug|iPhone.Build.0 = Debug|iPhone
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.Release|iPhone.ActiveCfg = Release|iPhone
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.Release|iPhone.Build.0 = Release|iPhone
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{20E45EE0-EEC9-4733-AB0A-BAF5AE82C2EB}.AppStore|iPhone.Build.0 = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = XamarinEvolve-Android\XamarinEvolve-Android.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.scope = text/plain
+		$1.TabsToSpaces = True
+		$0.CSharpFormattingPolicy = $2
+		$2.AutoPropertyFormatting = ForceOneLine
+		$2.IndentPreprocessorDirectives = False
+		$2.PropertyBraceStyle = NextLine
+		$2.EventBraceStyle = NextLine
+		$2.EmbeddedStatementPlacement = SameLine
+		$2.ArrayInitializerBraceStyle = NextLine
+		$2.BeforeMethodDeclarationParentheses = False
+		$2.BeforeMethodCallParentheses = False
+		$2.BeforeConstructorDeclarationParentheses = False
+		$2.BeforeIndexerDeclarationBracket = False
+		$2.BeforeDelegateDeclarationParentheses = False
+		$2.AfterDelegateDeclarationParameterComma = True
+		$2.NewParentheses = False
+		$2.SpacesBeforeBrackets = False
+		$2.AlignToFirstMethodDeclarationParameter = False
+		$2.AlignToFirstIndexerDeclarationParameter = False
+		$2.scope = text/x-csharp
+		$2.IndentSwitchSection = False
+		$2.NewLinesForBracesInProperties = False
+		$2.NewLinesForBracesInAccessors = False
+		$2.NewLinesForBracesInAnonymousMethods = False
+		$2.NewLinesForBracesInControlBlocks = False
+		$2.NewLinesForBracesInAnonymousTypes = False
+		$2.NewLinesForBracesInObjectCollectionArrayInitializers = False
+		$2.NewLinesForBracesInLambdaExpressionBody = False
+		$2.NewLineForElse = False
+		$2.NewLineForCatch = False
+		$2.NewLineForFinally = False
+		$2.NewLineForMembersInObjectInit = False
+		$2.NewLineForMembersInAnonymousTypes = False
+		$2.NewLineForClausesInQuery = False
+		$2.SpacingAfterMethodDeclarationName = True
+		$2.SpaceAfterMethodCallName = True
+		$2.SpaceBeforeOpenSquareBracket = True
+		$0.TextStylePolicy = $3
+		$3.inheritsSet = null
+		$3.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal

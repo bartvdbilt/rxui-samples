@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MC.AnimatedButton">
+	<ContentView.Content>
+        <StackLayout
+            x:Name="AnimatedButtonStack"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Padding="10"
+            BackgroundColor="#ccaaaa">
+            <Label
+                Text="Animated button"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="CenterAndExpand"
+                />
+        </StackLayout>
+	</ContentView.Content>
+</ContentView>
