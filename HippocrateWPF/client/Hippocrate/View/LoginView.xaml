@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Hippocrate.View.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Hippocrate.View"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:helper="clr-namespace:Hippocrate.Helper"
+             xmlns:controls="clr-namespace:Hippocrate.View"
+             xmlns:model="clr-namespace:Hippocrate.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignWidth="980" d:DesignHeight="660"
+             >
+
+    <Grid HorizontalAlignment="Stretch">
+        <Grid.Resources>
+            <model:LoginViewModel x:Key="myDataSource2"/>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Rectangle Fill="{StaticResource Second}" Grid.RowSpan="7" />
+        <TextBlock Foreground="{StaticResource Primary}" Grid.Row="1" TextWrapping="WrapWithOverflow" >
+            <Run FontSize="40" Text="Bienvenue sur Hippocrate !"/>
+            <LineBreak/>
+            <Run FontWeight="Light" FontSize="20" Text="Pour accéder à l'interface de gestion, connectez-vous avec les identifiants qui vous ont été fournis."/>
+        </TextBlock>
+        <TextBox Style="{StaticResource PlaceHolder}" Foreground="{StaticResource Primary}" Tag="Identifiant" Background="{StaticResource LightGray}" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Width="450" FontSize="27" Text="{Binding Login, FallbackValue=Login}">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Enter"
+                    Command="{Binding ConnectionCommand}"/>
+            </TextBox.InputBindings>
+        </TextBox>
+        <PasswordBox helper:PasswordHelper.BindPassword="true" Foreground="{StaticResource Primary}" helper:PasswordBoxHelper.PlaceHolderText="Mot de passe" helper:PasswordHelper.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{StaticResource LightGray}"  Tag="Mot de passe" HorizontalAlignment="Left"  Grid.Row="4"  Width="450" FontSize="27" Padding="15,0,0,0">
+            <PasswordBox.InputBindings>
+                <KeyBinding Key="Enter"
+                    Command="{Binding ConnectionCommand}"/>
+            </PasswordBox.InputBindings>
+        </PasswordBox>
+        <StackPanel Orientation="Vertical" Grid.Row="6" HorizontalAlignment="Stretch">
+            <Button Style="{StaticResource ConnectionButton}" Content="Connexion" Foreground="{StaticResource Second}" HorizontalAlignment="Left"  Height="50" Width="146" FontSize="24" Command="{Binding ConnectionCommand}"/>
+            <TextBlock Margin="0,25,0,0" FontSize="20" Foreground="Red" LineHeight="30" TextWrapping="Wrap" HorizontalAlignment="Stretch">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding LoginError}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+
+                <Run Text="L'identifiant et le mot de passe saisis ne correspondent pas."/><LineBreak/><Run Text="Vérifiez à nouveau vos informations."/></TextBlock>
+        </StackPanel>
+        <controls:LoadingView Grid.Row="3" Grid.ColumnSpan="2" Visibility="{Binding Path=Loading, Converter={StaticResource ResourceKey=BoolToVis}}"/>
+    </Grid>
+</UserControl>

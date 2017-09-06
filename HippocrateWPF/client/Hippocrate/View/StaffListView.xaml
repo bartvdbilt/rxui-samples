@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Hippocrate.View.StaffListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Hippocrate.View"
+             mc:Ignorable="d" 
+             x:Name="MainStaff"
+             d:DesignWidth="980" d:DesignHeight="660">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource Second}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.05*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition Width="0.50*"/>
+            <ColumnDefinition Width="1.70*" />
+            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="Back" Command="{Binding BackCommand}" Grid.Row="1" Grid.Column="1" Background="{StaticResource Second}" BorderThickness="0">
+            <Image Source="/Assets/back_button.png"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+        </Button>
+        <Image Grid.Row="1" Grid.Column="2" Source="/Assets/noun_206185_cc.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+        <Viewbox Grid.Row="1" Grid.Column="3" VerticalAlignment="Center"  HorizontalAlignment="Left" Stretch="Uniform">
+            <TextBlock Text="Personnel hospitalier" FontSize="30" VerticalAlignment="Center" Style="{StaticResource Title}"/>
+        </Viewbox>
+        <Button Command="{Binding AddCommand}" Grid.Row="1" Grid.Column="4" Visibility="{Binding Path=CanAdd, Converter={StaticResource ResourceKey=BoolToVis}}" Background="{StaticResource Second}" BorderThickness="0">
+            <Image Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </Button>
+        <TextBox Style="{StaticResource PlaceHolder}" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Tag="Recherche" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" FontSize="28"/>
+        <DataGrid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="6"
+                  ItemsSource="{Binding StaffList}" SelectedItem="{Binding SelectedRecord}"
+                  Style="{StaticResource DatagridCustom}" ColumnHeaderStyle="{StaticResource HeaderStyle}" RowStyle="{StaticResource RowStyle}" CellStyle="{StaticResource CellStyle}">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="{StaticResource SelectedColor}"/>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Firstname}" Width="0.2*" SortMemberPath="Firstname"/>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="0.2*"/>
+                <DataGridTextColumn Header="Fonction" Binding="{Binding Role}" Width="0.2*"/>
+                <DataGridTemplateColumn Header="Dossier" Width="0.1*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Button x:Name="btnConfirm" Command="{Binding Path=DataContext.StaffDetails, RelativeSource= {RelativeSource FindAncestor,AncestorType={x:Type DataGrid}}}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"  HorizontalAlignment="Center">
+                                    <Image Source="/Assets/noun_8398_cc.png" VerticalAlignment="Center"  HorizontalAlignment="Center"/>
+                                </Button>
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="6" Fill="{StaticResource Second}" OpacityMask="#99000000" Visibility="{Binding Path=CanViewAdd, Converter={StaticResource ResourceKey=BoolToVis}}"></Rectangle>
+        <Popup IsOpen="{Binding CanViewAdd}" Name="AddPatient"
+               Placement="Center"  PlacementTarget="{Binding ElementName=MainStaff}" HorizontalAlignment="Center" VerticalAlignment="Center" 
+               Grid.ColumnSpan="6" Grid.RowSpan="7"
+               AllowsTransparency="True" Width="400" Height="500" >
+            <Border Margin="0 0 8 8">
+                <Border.Effect>
+                    <DropShadowEffect/>
+                </Border.Effect>
+                <UserControl Content="{Binding AddUserContent}"/>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

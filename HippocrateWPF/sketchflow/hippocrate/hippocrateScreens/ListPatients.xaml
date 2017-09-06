@@ -1,0 +1,269 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:hippocrateScreens" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" x:Name="List_Name"
+    mc:Ignorable="d"
+    xmlns:model="clr-namespace:Dbo;assembly=Dbo"
+	x:Class="hippocrateScreens.List"
+	Width="640" Height="480">
+    <Grid x:Name="LayoutRoot" Background="#FFA1A1A1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.10*"/>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.05*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.50*"/>
+            <ColumnDefinition Width="1.50*" />
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+        <local:Screen_1_1 Height="Auto" Grid.RowSpan="7" Width="Auto" d:IsPrototypingComposition="True"/>
+        <Button Content="&lt;-" Grid.Column="2" Grid.Row="1" Style="{DynamicResource Button-Sketch}" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <pi:NavigateBackAction/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+        <Rectangle Grid.Column="3" Grid.Row="1" Margin="0,5,0,0" Opacity="0.75">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="noun_206184_cc.png" Stretch="Uniform"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock Grid.Column="4" Grid.Row="1" Style="{DynamicResource BasicTextBlock-Sketch}" Foreground="#FF333333" FontSize="29.333" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Language="fr-fr" Text="Patients"/></TextBlock>
+        <Border Grid.Column="5" Grid.Row="1" BorderBrush="#FF444444" BorderThickness="1,1,1,1" CornerRadius="50" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="+" Style="{DynamicResource Button-Sketch}" Background="{x:Null}" Foreground="#FF333333" BorderBrush="{x:Null}"/>
+        </Border>
+        <TextBox Grid.ColumnSpan="4" Grid.Column="2" Grid.Row="3" Style="{DynamicResource BasicTextBox-Sketch}" TextWrapping="Wrap" Text="Recherche"/>
+        <DataGrid GridLinesVisibility="None" AlternationCount="2" Grid.ColumnSpan="4" Grid.Column="2" Grid.Row="5" HeadersVisibility="Column" AutoGenerateColumns="False"  ColumnHeaderStyle="{DynamicResource DataGridColumnPersonHeaderStyle}" Foreground="#FF1D1D1D" BorderBrush="{x:Null}" AreRowDetailsFrozen="True" Background="Transparent" >
+            <DataGrid.Resources>
+                <Style x:Key="{x:Type ScrollViewer}" 
+           TargetType="{x:Type ScrollViewer}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                <Grid>
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ScrollContentPresenter 
+                                    x:Name="PART_ScrollContentPresenter"
+                                    Margin="{TemplateBinding Padding}"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    CanContentScroll="{TemplateBinding CanContentScroll}"/>
+                                    </Grid>
+                                    <Grid Background="Transparent">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <ScrollBar 
+                                    x:Name="PART_VerticalScrollBar"
+                                    Grid.Column="1"
+                                    Minimum="0.0"
+                                    Maximum="{TemplateBinding ScrollableHeight}"
+                                    ViewportSize="{TemplateBinding ViewportHeight}"
+                                    Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=VerticalOffset, Mode=OneWay}"
+                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"         
+                                    Cursor="Arrow"
+                                    AutomationProperties.AutomationId="VerticalScrollBar"/>
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="ScrollBarButton"
+           TargetType="{x:Type RepeatButton}">
+                    <Setter Property="OverridesDefaultStyle"
+                Value="true"/>
+                    <Setter Property="Focusable"
+                Value="false"/>
+                    <Setter Property="IsTabStop"
+                Value="false"/>
+                </Style>
+                <Style x:Key="ScrollBarThumb"
+           TargetType="{x:Type Thumb}">
+                    <Setter Property="OverridesDefaultStyle"
+                Value="true"/>
+                    <Setter Property="IsTabStop"
+                Value="false"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                <Border Background="White"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+                <Style x:Key="VerticalScrollBarPageButton"
+           TargetType="{x:Type RepeatButton}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                </Style>
+                <Style x:Key="{x:Type ScrollBar}"
+           TargetType="{x:Type ScrollBar}">
+                    <Setter Property="Background"
+                Value="#FF555555"/>
+                    <Setter Property="Stylus.IsPressAndHoldEnabled"
+                Value="True"/>
+                    <Setter Property="Stylus.IsFlicksEnabled"
+                Value="True"/>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                <Border Opacity="0.75"
+                                        Background="{TemplateBinding Background}">
+                                    <Track
+                                                Name="PART_Track"
+                                                IsEnabled="{TemplateBinding IsMouseOver}"
+                                                IsDirectionReversed="true">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Style="{StaticResource VerticalScrollBarPageButton}"
+                                                        Command="{x:Static ScrollBar.PageUpCommand}"/>
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Style="{StaticResource VerticalScrollBarPageButton}"
+                                                        Command="{x:Static ScrollBar.PageDownCommand}"/>
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb Style="{StaticResource ScrollBarThumb}"
+                                                        />
+                                        </Track.Thumb>
+                                    </Track>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <Trigger Property="AlternationIndex" Value="0">
+                            <Setter Property="Background" Value="#FF7F7F7F"/>
+                        </Trigger>
+                        <Trigger Property="AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="#FF8F8F8F"/>
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="BorderThickness" Value="0,0,2,0"/>
+                    <Setter Property="BorderBrush" Value="#FFA7A7A7"/>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}" Width="0.30*" SortMemberPath="Name" CanUserSort="True" SortDirection="Ascending">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="nom" Foreground="White" FontSize="14.667" RenderTransformOrigin="0.5,0.5" Height="18.507" Margin="0" />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Firstname}" Width="0.30*" SortMemberPath="Firstname" CanUserSort="True">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="prénom" Foreground="White" FontSize="14.667" RenderTransformOrigin="0.5,0.5" Height="18.507" Margin="0" />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="0.20*" SortMemberPath="NbObs" CanUserSort="True">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="nb obs." Foreground="White" FontSize="14.667" RenderTransformOrigin="0.5,0.5" Height="18.507" Margin="0" />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="0.1*" HeaderStyle="{DynamicResource DataGridColumnHeaderStyleClassic}">
+                
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+
+            <DataGrid.Items>
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+                <model:User Name="Dumas" Firstname="Toto" />
+                <model:User Name="Gorge" Firstname="Lloyd" />
+            </DataGrid.Items>
+        </DataGrid>
+    </Grid>
+</UserControl>

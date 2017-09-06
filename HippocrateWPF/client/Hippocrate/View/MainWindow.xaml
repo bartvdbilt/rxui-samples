@@ -1,0 +1,32 @@
+﻿<Window x:Class="Hippocrate.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Hippocrate.View"
+        xmlns:local="clr-namespace:Hippocrate.View"
+        xmlns:model="clr-namespace:Hippocrate.ViewModel"
+        mc:Ignorable="d"
+        Title="Hippocrate" Height="720" Width="1280" MinWidth="700" MinHeight="600"
+        Icon="/Assets/hippocrate.ico"
+>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="238*" />
+            <ColumnDefinition Width="1034*" />
+        </Grid.ColumnDefinitions>
+        <controls:SidebarView x:Name="sidebar" Grid.Column="0" />
+        <Rectangle Fill="{StaticResource Second}" Grid.Column="1" />
+        <ContentControl Content="{Binding WindowContent, NotifyOnTargetUpdated=True}" Margin="30,30,30,30" Grid.Column="1">
+            <ContentControl.Triggers>
+                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="0:0:0.5" From="0.0" To="1.0" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </ContentControl.Triggers>
+        </ContentControl>
+    </Grid>
+</Window>

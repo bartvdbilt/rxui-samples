@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Hippocrate.View.AddPatientView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Hippocrate.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400" Background="{StaticResource PopupBackground}">
+    <Grid Margin="10,10,10,10"  HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="14,0,24,0">
+            <Image DockPanel.Dock="Left" Source="/Assets/plus_button.png" RenderOptions.BitmapScalingMode="HighQuality" Width="40" VerticalAlignment="Center" OpacityMask="Black"/>
+            <TextBlock Text="Ajouter un patient" FontSize="30" VerticalAlignment="Center" Margin="20,0,0,0" Style="{StaticResource Title}"/>
+        </DockPanel>
+        <TextBox Grid.Row="1" Style="{StaticResource TextBoxValidation}" Foreground="{StaticResource Primary}" Tag="Prénom" FontSize="20" Grid.ColumnSpan="3">
+            <TextBox.Text>
+                <Binding Path="AddFirstname" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Row="2" Style="{StaticResource TextBoxValidation}" Foreground="{StaticResource Primary}" Tag="Nom" FontSize="20" Grid.ColumnSpan="3">
+            <TextBox.Text>
+                <Binding Path="AddName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <DatePicker Style="{StaticResource DatePickerValidation}" Grid.Row="3" Grid.ColumnSpan="3" FontSize="20" Background="White" Foreground="{StaticResource Primary}" BorderThickness="1" VerticalContentAlignment="Center" Margin="1,0,1,0">
+            <DatePicker.SelectedDate>
+                <Binding Path="AddBirthday" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </DatePicker.SelectedDate>
+        </DatePicker>
+
+        <Button Style="{StaticResource HoverButton}"  Content="Créer" FontSize="25" Grid.Row="5" BorderThickness="1" IsEnabled="{Binding CanSubmit}" Command="{Binding ValidateAddCommand}"/>
+        <Button Style="{StaticResource HoverButton}" Content="Annuler" FontSize="25" Grid.Row="5" Grid.Column="1" BorderThickness="1" Command="{Binding CancelCommand}"/>
+
+    </Grid>
+</UserControl>
