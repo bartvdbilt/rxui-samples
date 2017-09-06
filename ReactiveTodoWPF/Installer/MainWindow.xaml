@@ -1,0 +1,42 @@
+﻿<controls:MetroWindow x:Class="Installer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Installer"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Height="350" Width="525"
+        Title="Tools Installer" ShowTitleBar="False" ShowMaxRestoreButton="False"
+        BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="0">
+    <controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </controls:MetroWindow.Resources>
+
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button Command="{Binding ChangeThemeCommand}">help</Button>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
+    <Grid Margin="10">
+        <controls:MetroAnimatedTabControl>
+            <TabItem Header="asdasd">
+                <DockPanel Margin="5">
+                    <Button Style="{DynamicResource AccentedSquareButtonStyle}" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Padding="10" FontSize="24">INSTALL</Button>
+                <TextBlock>
+                        <Run>installing installing</Run>
+                        <Run Foreground="{DynamicResource AccentColorBrush}">installing</Run>
+                        <Run>installing installing</Run>
+                    </TextBlock>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="zzzz">
+                <Label>zzz</Label>
+            </TabItem>
+        </controls:MetroAnimatedTabControl>
+    </Grid>
+</controls:MetroWindow>

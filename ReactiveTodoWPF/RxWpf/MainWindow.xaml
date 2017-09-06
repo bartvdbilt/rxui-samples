@@ -1,0 +1,97 @@
+﻿<Controls:MetroWindow  x:Class="RxWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:RxWpf"
+        xmlns:reactiveUi="clr-namespace:ReactiveUI;assembly=ReactiveUI"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="350" Width="525"
+                       BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1">
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+                <Button Command="{Binding ChangeThemeCommand}">theme</Button>
+                <Button Command="{Binding ChangeAccentCommand}">accent</Button>
+            <Button Command="{Binding LoadCommand}">load</Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <local:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+
+            <DataTemplate DataType="{x:Type local:TodoItem}">
+                <DataTemplate.Triggers>
+                    <Trigger Property="DockPanel.IsMouseOver" Value="True">
+                        <Trigger.Setters >
+                            <Setter TargetName="DeleteButton" Property="Button.Visibility" Value="Visible"></Setter>
+                        </Trigger.Setters>
+                    </Trigger>
+                </DataTemplate.Triggers>
+                <DockPanel>
+                    <Button x:Name="DeleteButton" BorderThickness="0"
+                            Visibility="Collapsed"
+                            DockPanel.Dock="Right"
+                            Command="{Binding DeleteCommand}"
+                            Width="20">
+                        <Rectangle Fill="White" Width="10" Height="10">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Visual="{StaticResource appbar_close}" Stretch="Fill" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+                    <CheckBox HorizontalContentAlignment="Stretch" IsChecked="{Binding Done}" Content="{Binding Text}" />
+
+                </DockPanel>
+            </DataTemplate>
+            
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+        </ResourceDictionary>
+
+    </Controls:MetroWindow.Resources>
+
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label FontSize="50">to do</Label>
+
+        <TextBox x:Name="textBox"  Grid.Row="1"  Text="{Binding NewItemText, UpdateSourceTrigger=PropertyChanged}" />
+
+        <ListBox Grid.Row="2" ItemsSource="{Binding FilteredItems}" Style="{DynamicResource MetroListBox}" ItemContainerStyle="{DynamicResource MetroListBoxItem}"></ListBox>
+
+        <Label Grid.Row="3" Content="{Binding ItemsLeftCount}" ContentStringFormat="{}{0} items left"></Label>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <RadioButton Content="All" Width="90" IsChecked="{Binding Filter, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:Filtering.All}}"/>
+            <RadioButton Content="Active" Width="90" IsChecked="{Binding Filter, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:Filtering.NotDone}}"/>
+            <RadioButton Content="Completed" Width="90" IsChecked="{Binding Filter, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:Filtering.Done}}"/>
+        </StackPanel>
+
+        <!--<StackPanel x:Name="errorPanel" Visibility="{Binding HasError, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="4" Orientation="Horizontal" >
+            <Label Content="{Binding LastError.ErrorMessage}"></Label>
+            <ItemsControl ItemsSource="{Binding LastError.RecoveryOptions}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type reactiveUi:IRecoveryCommand}">
+                        <Button Content="{Binding CommandName}" Command="{Binding}"></Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>-->
+
+    </Grid>
+</Controls:MetroWindow>
